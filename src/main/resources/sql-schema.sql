@@ -7,14 +7,14 @@ USE `ims` ;
 SHOW Tables;
 
 
-CREATE TABLE game (
+CREATE TABLE Item (
     ProductID BIGINT AUTO_INCREMENT,
-    GameTitle VARCHAR(64) NOT NULL,
+    ItemName VARCHAR(64) NOT NULL,
     Price FLOAT(4,2),
     PRIMARY KEY(ProductID)
 );
 
-CREATE TABLE customer (
+CREATE TABLE customers (
     CustomerID BIGINT AUTO_INCREMENT,
     forename VARCHAR(64) NOT NULL,
     surname VARCHAR(64) NOT NULL,
@@ -26,25 +26,22 @@ CREATE TABLE Orders (
 	CustomerID BIGINT,
     ProductID BIGINT,
 	FOREIGN KEY(CustomerID) REFERENCES customer(CustomerID),
-	FOREIGN KEY(ProductID) REFERENCES game(ProductID), 	
+	FOREIGN KEY(ProductID) REFERENCES Item(ProductID), 	
     PRIMARY KEY(OrderID)
 );
 
 #Test Data
-INSERT INTO game(Game_title, Price)
+INSERT INTO Item(ItemName, Price)
 VALUES("Elden Ring", 54.99);
 
 #Test Data
 INSERT INTO customer(forename, surname)
-VALUES("William", "Smith");
+VALUES("Fred", "Smith");
 
-#Test Data
-DELETE FROM customer
-WHERE CustomerID = 1;
-
-#DROP TABLE Game;
-
-SELECT * FROM customer;
+#DROP TABLE customers;      
+#DROP TABLE Item;
+#DROP TABLE Orders;
+SELECT * FROM customers;
 SELECT * FROM Orders;
 SELECT * FROM game;
     
