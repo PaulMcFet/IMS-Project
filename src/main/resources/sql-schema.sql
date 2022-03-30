@@ -7,42 +7,59 @@ USE `ims` ;
 SHOW Tables;
 
 
-CREATE TABLE Item (
+CREATE TABLE Items (
     ProductID BIGINT AUTO_INCREMENT,
     ItemName VARCHAR(64) NOT NULL,
-    Price FLOAT(4,2),
+    Price FLOAT(5,2),
     PRIMARY KEY(ProductID)
 );
+#An Item can be in Zero or Many Orders
 
 CREATE TABLE customers (
-    CustomerID BIGINT AUTO_INCREMENT,
-    forename VARCHAR(64) NOT NULL,
+    id BIGINT AUTO_INCREMENT,
+    first_name VARCHAR(64) NOT NULL,
     surname VARCHAR(64) NOT NULL,
-    PRIMARY KEY(CustomerID)
+    PRIMARY KEY(id)
     );
+#A customer can have Zero or Many orders.
 
-CREATE TABLE Orders (
-	OrderID BIGINT auto_increment,
-	CustomerID BIGINT,
+CREATE TABLE Orders_Items(
+	OrderID BIGINT AUTO_INCREMENT,
     ProductID BIGINT,
-	FOREIGN KEY(CustomerID) REFERENCES customer(CustomerID),
-	FOREIGN KEY(ProductID) REFERENCES Item(ProductID), 	
-    PRIMARY KEY(OrderID)
+	FOREIGN KEY(ProductID) REFERENCES Items(ProductID), 
+	FOREIGN KEY(OrderID) REFERENCES Orders(OrderID),
+    PRIMARY KEY(OrderID, ProductID)
 );
 
-#Test Data
-INSERT INTO Item(ItemName, Price)
-VALUES("Elden Ring", 54.99);
+CREATE TABLE Orders (
+	OrderID BIGINT,
+    id BIGINT,
+	FOREIGN KEY(id) REFERENCES Customers(id),
+    PRIMARY KEY(OrderID)
+);
+#An Order can have One or Many Items
+#An order can have One Customer
+
 
 #Test Data
-INSERT INTO customer(forename, surname)
-VALUES("Fred", "Smith");
+INSERT INTO Items(ItemName, Price)
+VALUES("Bobblehead", 9.99);
+
+#Test Data
+INSERT INTO customers(first_name, surname)
+VALUES("Richard", "Grayson");
+
+
+INSERT INTO Orders_Items(OrderID) VALUE (ProductID);
 
 #DROP TABLE customers;      
-#DROP TABLE Item;
+#DROP TABLE Items;
 #DROP TABLE Orders;
+#DROP TABLE Orders_Items;
+
+
 SELECT * FROM customers;
-SELECT * FROM Orders;
-SELECT * FROM game;
+SELECT * FROM Orders_Items;
+SELECT * FROM Items;
     
     
