@@ -16,6 +16,7 @@ package com.qa.ims.persistence.dao;
 	public class OrderDAO implements Dao<Order> {
 
 		public static final Logger LOGGER = LogManager.getLogger();
+		
 
 		@Override
 		public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
@@ -29,7 +30,7 @@ package com.qa.ims.persistence.dao;
 		public List<Order> readAll() {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders_Items");) {
+					ResultSet resultSet = statement.executeQuery("INSERT INTO Orders_Items(OrderID) VALUE (ProductID); SELECT * FROM Orders_Items");) {
 				List<Order> Orders = new ArrayList<>();
 				while (resultSet.next()) {
 					Orders.add(modelFromResultSet(resultSet));

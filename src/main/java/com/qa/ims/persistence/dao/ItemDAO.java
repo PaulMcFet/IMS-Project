@@ -59,7 +59,7 @@ package com.qa.ims.persistence.dao;
 		public Item create(Item Item) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					PreparedStatement statement = connection
-							.prepareStatement("INSERT INTO Items(ItemName, Price) VALUES (?, ?)");) {
+							.prepareStatement("INSERT INTO Items(ItemName, Price) VALUES (?, ?)")){
 				statement.setString(1, Item.getItemName());
 				statement.setFloat(2, Item.getPrice());
 				statement.executeUpdate();
