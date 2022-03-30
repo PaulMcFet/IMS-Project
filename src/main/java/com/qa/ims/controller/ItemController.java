@@ -1,8 +1,10 @@
 package com.qa.ims.controller;
 
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
@@ -31,10 +33,10 @@ public class ItemController implements CrudController<Item> {
 	@Override
 	public Item create() {
 		LOGGER.info("Please enter an item name");
-		String ItemTitle = utils.getString();
+		String ItemName = utils.getString();
 		LOGGER.info("Please enter a Price");
 		Float Price = utils.getFloat();
-		Item Item = ItemDAO.create(new Item(ItemTitle, Price));
+		Item Item = ItemDAO.create(new Item(ItemName, Price));
 		LOGGER.info("Item created");
 		return Item;
 	}
@@ -44,10 +46,10 @@ public class ItemController implements CrudController<Item> {
 		LOGGER.info("Please enter the Product id of the Item you would like to update");
 		Long ProductID = utils.getLong();
 		LOGGER.info("Please enter a product name");
-		String ItemTitle = utils.getString();
+		String ItemName = utils.getString();
 		LOGGER.info("Please enter a Price");
 		Float Price = utils.getFloat();
-		Item Item = ItemDAO.update(new Item(ProductID, ItemTitle, Price));
+		Item Item = ItemDAO.update(new Item(ProductID, ItemName, Price));
 		LOGGER.info("Item Updated");
 		return Item;
 	}

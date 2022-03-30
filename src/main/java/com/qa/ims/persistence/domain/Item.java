@@ -5,7 +5,7 @@ public class Item {
 	private Long ProductID;
 	private String ItemName;
 	private Float Price;
-	
+
 	public Item(String ItemName, Float Price) {
 		this.setItemName(ItemName);
 		this.setPrice(Price);
@@ -15,8 +15,8 @@ public class Item {
 	public Item(Long ProductID, String ItemName, Float Price) {
 		this.setProductID(ProductID);
 		this.setItemName(ItemName);
-		this.setPrice(Price);	
-}
+		this.setPrice(Price);
+	}
 
 	public Long getProductID() {
 		return ProductID;
