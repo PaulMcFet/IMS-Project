@@ -38,8 +38,8 @@ import com.qa.ims.utils.Utils;
 			LOGGER.info("Please enter a Customer ID");
 			Long ID = utils.getLong();
 			LOGGER.info("Please enter a Product ID");
-			Long ProductID = utils.getLong();
-			Order Order = OrderDAO.create(new Order(ID, ProductID));
+			Long OrderID = utils.getLong();
+			Order Order = OrderDAO.create(new Order(ID, OrderID));
 			LOGGER.info("Order created");
 			return Order;
 		}
@@ -48,12 +48,12 @@ import com.qa.ims.utils.Utils;
 		@Override
 		public Order update() {
 			LOGGER.info("Please enter the id of the Order you would like to update");
-			Long OrderID = utils.getLong();
+			Long PurchaseID = utils.getLong();
 			LOGGER.info("Please confirm Customer ID");
 			Long ID = utils.getLong();
 			LOGGER.info("Please enter the ID of the product to be ordered");
-			Long ProductID = utils.getLong();
-			Order Order = OrderDAO.update(new Order(OrderID, ID, ProductID));
+			Long OrderID = utils.getLong();
+			Order Order = OrderDAO.update(new Order(PurchaseID, ID, OrderID));
 			LOGGER.info("Order Updated");
 			return Order;
 		}

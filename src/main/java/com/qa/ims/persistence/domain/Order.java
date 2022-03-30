@@ -2,26 +2,26 @@ package com.qa.ims.persistence.domain;
 
 public class Order {
 
-	private Long ProductID;
-	private Long ID;
 	private Long OrderID;
+	private Long ID;
+	private Long PurchaseID;
 
-	public Order(Long ID, Long ProductID) {
-		this.setOrderID(OrderID);
+	public Order(Long ID, Long OrderID) {
+		this.setPurchaseID(PurchaseID);
 	}
 
-	public Order(Long OrderID, Long ID, Long ProductID) {
+	public Order(Long PurchaseID, Long ID, Long OrderID) {
 		this.setId(ID);
-		this.setProductID(ProductID);
 		this.setOrderID(OrderID);
+		this.setPurchaseID(PurchaseID);
 	}
 
-	public Long getProductID() {
-		return ProductID;
+	public Long getOrderID() {
+		return OrderID;
 	}
 
-	public void setProductID(Long ProductID) {
-		ProductID = ProductID;
+	public void setOrderID(Long OrderID) {
+		OrderID = OrderID;
 	}
 
 	public Long getID() {
@@ -32,26 +32,26 @@ public class Order {
 		this.ID = id;
 	}
 
-	public Long getOrderID() {
-		return OrderID;
+	public Long getPurchaseID() {
+		return PurchaseID;
 	}
 
-	public void setOrderID(Long orderID) {
-		OrderID = orderID;
+	public void setPurchaseID(Long PurchaseID) {
+		PurchaseID = PurchaseID;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [ProductID=" + getProductID() + ", ID=" + getID() + ", OrderID=" + getOrderID() + "]";
+		return "Order [OrderID=" + getOrderID() + ", ID=" + getID() + ", PurchaseID=" + getPurchaseID() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((OrderID == null) ? 0 : OrderID.hashCode());
+		result = prime * result + ((PurchaseID == null) ? 0 : PurchaseID.hashCode());
 		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
-		result = prime * result + ((ProductID == null) ? 0 : ProductID.hashCode());
+		result = prime * result + ((OrderID == null) ? 0 : OrderID.hashCode());
 		return result;
 	}
 
@@ -64,15 +64,15 @@ public class Order {
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		if (getProductID() == null) {
-			if (other.getProductID() != null)
+		if (getOrderID() == null) {
+			if (other.getOrderID() != null)
 				return false;
-		} else if (!getProductID().equals(other.getProductID()))
+		} else if (!getOrderID().equals(other.getOrderID()))
 			return false;
-		if (OrderID == null) {
-			if (other.OrderID != null)
+		if (PurchaseID == null) {
+			if (other.PurchaseID != null)
 				return false;
-		} else if (!OrderID.equals(other.OrderID))
+		} else if (!PurchaseID.equals(other.PurchaseID))
 		return false;
 		if (ID == null) {
 			if (other.ID != null)

@@ -55,7 +55,6 @@ package com.qa.ims.persistence.dao;
 			return null;
 		}
 
-
 		@Override
 		public Item create(Item Item) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
