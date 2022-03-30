@@ -5,13 +5,13 @@ public class Order {
 	private Long OrderID;
 	private Long ID;
 	private Long PurchaseID;
-
+	
 	public Order(Long ID, Long OrderID) {
 		this.setPurchaseID(PurchaseID);
 	}
 
 	public Order(Long PurchaseID, Long ID, Long OrderID) {
-		this.setId(ID);
+		this.setID(ID);
 		this.setOrderID(OrderID);
 		this.setPurchaseID(PurchaseID);
 	}
@@ -21,15 +21,15 @@ public class Order {
 	}
 
 	public void setOrderID(Long OrderID) {
-		OrderID = OrderID;
+		this.OrderID = OrderID;
 	}
 
 	public Long getID() {
 		return ID;
 	}
 
-	public void setId(Long id) {
-		this.ID = id;
+	public void setID(Long ID) {
+		this.ID = ID;
 	}
 
 	public Long getPurchaseID() {
@@ -37,12 +37,13 @@ public class Order {
 	}
 
 	public void setPurchaseID(Long PurchaseID) {
-		PurchaseID = PurchaseID;
+		this.PurchaseID = PurchaseID;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [OrderID=" + getOrderID() + ", ID=" + getID() + ", PurchaseID=" + getPurchaseID() + "]";
+		return "Order [OrderID=" + getOrderID() + ", ID=" + getID() + ", PurchaseID=" + getPurchaseID()
+				 + "]";
 	}
 
 	@Override
@@ -81,5 +82,4 @@ public class Order {
 			return false;
 		return true;
 	}
-
 }

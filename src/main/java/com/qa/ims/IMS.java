@@ -84,7 +84,6 @@ public class IMS {
 		} while (!changeDomain);
 	}
 
-
 	public void doAction(CrudController<?> crudController, Action action) {
 		switch (action) {
 		case CREATE:

@@ -25,12 +25,11 @@ package com.qa.ims.persistence.dao;
 			return new Order(PurchaseID, ID, OrderID);
 		}
 
-
 		@Override
 		public List<Order> readAll() {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders");) {
+					ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders_Items");) {
 				List<Order> Orders = new ArrayList<>();
 				while (resultSet.next()) {
 					Orders.add(modelFromResultSet(resultSet));
@@ -46,7 +45,7 @@ package com.qa.ims.persistence.dao;
 		public Order readLatest() {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders ORDER BY PurchaseID DESC LIMIT 1");) {
+					ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders_Items ORDER BY PurchaseID DESC LIMIT 1");) {
 				resultSet.next();
 				return modelFromResultSet(resultSet);
 			} catch (Exception e) {
@@ -60,7 +59,7 @@ package com.qa.ims.persistence.dao;
 		public Order create(Order Order) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					PreparedStatement statement = connection
-							.prepareStatement("INSERT INTO Orders(OrderID, ID) VALUES (?, ?)");) {
+							.prepareStatement("INSERT INTO Orders(OrderID, ID) VALUES (?, ?, ?)");) {
 				statement.setLong(1, Order.getOrderID());
 				statement.setLong(2, Order.getID());
 				statement.executeUpdate();
@@ -75,7 +74,7 @@ package com.qa.ims.persistence.dao;
 		@Override
 		public Order read(Long PurchaseID) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
-					PreparedStatement statement = connection.prepareStatement("SELECT * FROM Orders WHERE OrderID = ?");) {
+					PreparedStatement statement = connection.prepareStatement("SELECT * FROM Orders_Items WHERE PurchaseID = ?");) {
 				statement.setLong(1, PurchaseID);
 				try (ResultSet resultSet = statement.executeQuery();) {
 					resultSet.next();
@@ -92,7 +91,7 @@ package com.qa.ims.persistence.dao;
 		public Order update(Order Order) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					PreparedStatement statement = connection
-							.prepareStatement("UPDATE Orders SET OrderID = ?, ID = ? WHERE PurchaseID = ?");) {
+							.prepareStatement("UPDATE Orders_Items SET OrderID = ?, ID = ? WHERE PurchaseID = ?");) {
 				statement.setLong(1, Order.getPurchaseID());
 				statement.setLong(2, Order.getID());
 				statement.setLong(3, Order.getOrderID());
@@ -109,7 +108,7 @@ package com.qa.ims.persistence.dao;
 		@Override
 		public int delete(long PurchaseID) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
-					PreparedStatement statement = connection.prepareStatement("DELETE FROM Orders WHERE OrderID = ?");) {
+					PreparedStatement statement = connection.prepareStatement("DELETE FROM Orders_Items WHERE OrderID = ?");) {
 				statement.setLong(1, PurchaseID);
 				return statement.executeUpdate();
 			} catch (Exception e) {

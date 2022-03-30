@@ -22,7 +22,6 @@ import com.qa.ims.utils.Utils;
 			this.utils = utils;
 		}
 
-
 		@Override
 		public List<Order> readAll() {
 			List<Order> Orders = OrderDAO.readAll();
@@ -31,7 +30,6 @@ import com.qa.ims.utils.Utils;
 			}
 			return Orders;
 		}
-
 
 		@Override
 		public Order create() {
@@ -43,7 +41,6 @@ import com.qa.ims.utils.Utils;
 			LOGGER.info("Order created");
 			return Order;
 		}
-
 
 		@Override
 		public Order update() {
@@ -58,12 +55,11 @@ import com.qa.ims.utils.Utils;
 			return Order;
 		}
 
-
 		@Override
 		public int delete() {
 			LOGGER.info("Please enter the id of the Order you would like to delete");
-			Long ID = utils.getLong();
-			return OrderDAO.delete(ID);
+			Long PurchaseID = utils.getLong();
+			return OrderDAO.delete(PurchaseID);
 		}
 
 	}
