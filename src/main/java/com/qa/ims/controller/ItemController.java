@@ -30,7 +30,7 @@ public class ItemController implements CrudController<Item> {
 
 	@Override
 	public Item create() {
-		LOGGER.info("Please enter a first name");
+		LOGGER.info("Please enter an item name");
 		String ItemTitle = utils.getString();
 		LOGGER.info("Please enter a Price");
 		Float Price = utils.getFloat();
@@ -43,7 +43,7 @@ public class ItemController implements CrudController<Item> {
 	public Item update() {
 		LOGGER.info("Please enter the Product id of the Item you would like to update");
 		Long ProductID = utils.getLong();
-		LOGGER.info("Please enter a first name");
+		LOGGER.info("Please enter a product name");
 		String ItemTitle = utils.getString();
 		LOGGER.info("Please enter a Price");
 		Float Price = utils.getFloat();

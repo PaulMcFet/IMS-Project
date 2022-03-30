@@ -18,10 +18,10 @@ package com.qa.ims.persistence.dao;
 
 		@Override
 		public Item modelFromResultSet(ResultSet resultSet) throws SQLException {
-			Long ProductID = resultSet.getLong("Product id");
-			String ItemName = resultSet.getString("Item Name");
+			Long ProductID = resultSet.getLong("Productid");
+			String ItemName = resultSet.getString("ItemName");
 			Float Price = resultSet.getFloat("Price");
-			return new Item(ItemName, Price);
+			return new Item(ProductID, ItemName, Price);
 		}
 
 
@@ -29,7 +29,7 @@ package com.qa.ims.persistence.dao;
 		public List<Item> readAll() {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT * FROM Item");) {
+					ResultSet resultSet = statement.executeQuery("SELECT * FROM Items");) {
 				List<Item> Items = new ArrayList<>();
 				while (resultSet.next()) {
 					Items.add(modelFromResultSet(resultSet));
@@ -45,7 +45,7 @@ package com.qa.ims.persistence.dao;
 		public Item readLatest() {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT * FROM Item ORDER BY id DESC LIMIT 1");) {
+					ResultSet resultSet = statement.executeQuery("SELECT * FROM Items ORDER BY ProductID DESC LIMIT 1");) {
 				resultSet.next();
 				return modelFromResultSet(resultSet);
 			} catch (Exception e) {
@@ -60,7 +60,7 @@ package com.qa.ims.persistence.dao;
 		public Item create(Item Item) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					PreparedStatement statement = connection
-							.prepareStatement("INSERT INTO Item(ItemName, Price) VALUES (?, ?)");) {
+							.prepareStatement("INSERT INTO Items(ItemName, Price) VALUES (?, ?)");) {
 				statement.setString(1, Item.getItemName());
 				statement.setFloat(2, Item.getPrice());
 				statement.executeUpdate();
@@ -75,7 +75,7 @@ package com.qa.ims.persistence.dao;
 		@Override
 		public Item read(Long ProductID) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
-					PreparedStatement statement = connection.prepareStatement("SELECT * FROM Item WHERE id = ?");) {
+					PreparedStatement statement = connection.prepareStatement("SELECT * FROM Items WHERE ProductID = ?");) {
 				statement.setLong(1, ProductID);
 				try (ResultSet resultSet = statement.executeQuery();) {
 					resultSet.next();
@@ -92,7 +92,7 @@ package com.qa.ims.persistence.dao;
 		public Item update(Item Item) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					PreparedStatement statement = connection
-							.prepareStatement("UPDATE Item SET ItemName = ?, Price = ? WHERE ProductID = ?");) {
+							.prepareStatement("UPDATE Items SET ItemName = ?, Price = ? WHERE ProductID = ?");) {
 				statement.setString(1, Item.getItemName());
 				statement.setFloat(2, Item.getPrice());
 				statement.setLong(3, Item.getProductID());
@@ -109,7 +109,7 @@ package com.qa.ims.persistence.dao;
 		@Override
 		public int delete(long ProductID) {
 			try (Connection connection = DBUtils.getInstance().getConnection();
-					PreparedStatement statement = connection.prepareStatement("DELETE FROM Item WHERE id = ?");) {
+					PreparedStatement statement = connection.prepareStatement("DELETE FROM Items WHERE ProductID = ?");) {
 				statement.setLong(1, ProductID);
 				return statement.executeUpdate();
 			} catch (Exception e) {

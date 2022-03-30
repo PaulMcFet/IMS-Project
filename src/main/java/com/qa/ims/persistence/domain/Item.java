@@ -12,7 +12,7 @@ public class Item {
 
 	}
 
-	public Item(Long ID, String ItemName, Float Price) {
+	public Item(Long ProductID, String ItemName, Float Price) {
 		this.setProductID(ProductID);
 		this.setItemName(ItemName);
 		this.setPrice(Price);	

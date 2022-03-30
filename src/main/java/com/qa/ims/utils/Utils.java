@@ -53,8 +53,19 @@ public class Utils {
 	}
 
 	public Float getFloat() {
-		// TODO Auto-generated method stub
-		return null;
+			String input = null;
+			Float FloatInput = null;
+			do {
+				try {
+					input = getString();
+					FloatInput = Float.parseFloat(input);
+				} catch (NumberFormatException nfe) {
+					LOGGER.info("Error - Please enter a number");
+				}
+			} while (FloatInput == null);
+			return FloatInput;
 	}
-
 }
+
+
+
